@@ -113,10 +113,13 @@ public:
 int main() {
     srand(time(NULL));
     
+    int score = 0;
+    
     // SISTEMA ANTI-COPIA: Petición de datos
     string nombrePiloto;
     cout << "Alexander Luca Veit ";
     getline(cin, nombrePiloto);
+    
     
     system("cls");
     ocultarCursor();
@@ -136,6 +139,7 @@ int main() {
         // HUD CON NOMBRE DEL ESTUDIANTE
         gotoxy(2, 1); cout << "PILOTO: " << nombrePiloto << "  ";
         gotoxy(2, 2); cout << "VIDAS: " << jugador.getVidas() << "  ";
+        gotoxy(15, 2); cout << "SCORE: " << score << "  ";
 
         if (_kbhit()) {
             char tecla = tolower(_getch()); // tolower evita el problema del Bloq Mayús
@@ -179,6 +183,7 @@ int main() {
 
                     asteroides[i]->borrar();
                     asteroides[i] = new Asteroide((rand() % 70) + 2, 4);
+                    score += 10;
                     break; 
                 }
             }
@@ -189,6 +194,8 @@ int main() {
     system("cls");
     gotoxy(30, 10);
     cout << "G A M E   O V E R... O sea... Perdiste!!";
+    gotoxy(30, 11);
+    cout << "PILOTO: " << nombrePiloto << " | SCORE: " << score;
     gotoxy(30, 12);
     system("pause");
     return 0;
